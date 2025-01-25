@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Catalyst Design Consultancy</title>
+    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+
+
+
+
+    <style>
+        /* Basic resets */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            overflow-x: hidden;
+            margin: 0;
+            transition: padding-right 0.3s ease;
+            /* Transition for scrollbar width adjustment */
+        }
+
+        body.no-scroll {
+            overflow: hidden;
+            padding-right: 15px;
+            /* Adjust to the width of the scrollbar */
+        }
+
+        #hero4 {
+            background: linear-gradient(#00000084, #0000007e), url(./assets/img/images.jpeg);
+            background-position: center;
+            background-size: cover;
+            height: 300px;
+        }
+
+        /* Footer */
+        .divider {
+      border-top: 1px solid #eaeaea;
+      margin: 20px 50px;
+    }
+
+    footer {
+      background-color: #ffffff;
+      padding: 20px 50px;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo-section {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .logo-section img {
+      width: 150px;
+    }
+
+    .address-section {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .address-section p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+
+    .contact-section {
+      flex: 1;
+      min-width: 200px;
+      text-align: center;
+    }
+
+    .contact-section p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+
+    .subscribe-section {
+      flex: 1;
+      min-width: 200px;
+      text-align: right;
+    }
+
+    .subscribe-section p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+
+    .social-icons {
+      margin-top: 10px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .social-icons a {
+      width: 30px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+      border-radius: 50%;
+      border: 1px solid #eaeaea;
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background-color: #0073e6;
+      color: #fff;
+      border-color: #0073e6;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 12px;
+      color: #999;
+    }
+
+
+
+
+        /* Full-screen menu styling */
+        .menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            /* Dark semi-transparent background for the menu */
+            backdrop-filter: blur(10px);
+            /* Blurred background effect */
+            transition: left 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: left;
+            z-index: 1000;
+            padding-left: 200px;
+            text-align: left;
+        }
+
+        .menu.active {
+            left: 0;
+        }
+
+        .menu ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu ul li {
+            margin: 20px 0;
+        }
+
+        .menu ul li a {
+            text-decoration: none;
+            font-size: 2rem;
+            color: #333;
+            padding: 10px 20px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            display: block;
+            perspective: 1000px;
+
+        }
+
+        .menu ul li a::before {
+            content: '';
+            /* Create a pseudo-element for better control */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            /* Transparent background */
+            z-index: 0;
+        }
+
+
+
+
+        .menu ul li a:hover {
+            /* Slightly visible background on hover */
+            color: #fff;
+            /* Keep text white on hover */
+            transform: rotateX(15deg) scale(1.1);
+            /* 3D effect with slight scaling */
+            z-index: 1;
+
+        }
+
+        .menu ul li a:hover::before {
+            background: none;
+        }
+
+        /* Hamburger icon styling */
+        .hamburger {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 1001;
+            color: #333;
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .hamburger .bar {
+            width: 30px;
+            height: 3px;
+            background-color: #333;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+
+        /* Overlay for background blur */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+
+    <div class="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+
+    <!-- Full-screen menu -->
+    <div class="menu">
+        <ul>
+            <li><a href="index.html">home</a></li>
+            <li><a href="interior_design.html">interior design</a></li>
+            <li><a href="elevation_design.html">elevation design</a></li>
+            <li><a href="services.html">services</a></li>
+            <li><a href="portfolio.html">portfolio</a></li>
+            <li><a href="contact.html">contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Overlay for background blur -->
+    <div class="overlay"></div>
+
+
+    <!-- HERO -->
+    <section id="hero4" class="d-flex align-items-center text-left">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-white  display-1" data-aos="fade-up" data-aos-delay="100">About us</h1>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- privacy and policy -->
+    <section id="privacy" class="section-padding">
+        <div class="container">
+            <!-- <div class="row">
+                <div class="col-12 text-center">
+                    <div class="section-title">
+                        <h1 class="display-4 ">privacy policy</h1>
+                        <div class="line"></div>
+
+                    </div>
+                </div>
+            </div> -->
+            <div class="row">
+                <div class="mb-0 mt-3">
+                    <h5><b>Welcome to Talennzia</b></h5>
+                    <p>At Talennzia, we believe in the boundless potential of every organization. Our mission is to
+                        empower businesses to overcome challenges, seize opportunities, and unlock their full potential
+                        through expert guidance and strategic solutions. With a dedicated team of seasoned consultants,
+                        we provide comprehensive services that address the unique needs of each client, ensuring
+                        sustainable growth and success.</p>
+                </div>
+                <div class="mb-0 mt-3">
+                    <h5><b>Our Vision</b></h5>
+                    <p>To be the trusted partner in transforming organizations and empowering individuals by unlocking the true potential 
+                        of talent globally, fostering growth, innovation, and excellence.</p>
+
+                </div>
+                <div class="mb-0 mt-3">
+                    <h5><b>Our Mission</b></h5>
+                    <p>For Organizations: To provide tailored HR solutions that drive business success by 
+                        aligning talent strategies with organizational goals.
+                    </p>
+                    <p>For Job Seekers: To guide individuals in achieving their career aspirations by connecting them with opportunities 
+                        that align with their skills, values, and ambitions.
+                    </p>
+                    <p>Core Focus: To deliver exceptional value through innovative recruitment practices, strategic HR management, and a commitment to diversity and inclusion.
+                    </p>
+
+                </div>
+                <div class="mb-0 mt-3">
+                    <h5><b>Our Services</b></h5>
+                    <p>1. Strategic Consulting:
+                        <li>Business Strategy Development: We help businesses craft robust strategies that drive long-term success.</li>
+                    <li>Market Research and Analysis: Our team conducts in-depth market research to provide actionable insights.</li>
+                    <li>Competitive Analysis and Benchmarking: We assess your competitors and identify opportunities to gain a competitive edge.</li>
+                    </p>
+                    <p>2. Operational Excellence:
+                        <li>Process Optimization and Improvement: We streamline operations to enhance efficiency and productivity.</li>
+                    <li>Organizational Design and Development: Our experts design organizational structures that support your strategic goals.</li>
+                    <li>Change Management and Implementation: We manage change initiatives to ensure smooth transitions and lasting impact.</li>
+                    </p>
+                    <p>3. Talent Management:
+                        <li>Talent Acquisition and Retention Strategies: We attract and retain top talent to build high-performing teams.</li>
+                    <li>Leadership Development and Coaching: Our programs develop leaders who drive organizational success.</li>
+                    <li>Performance Management and Improvement: We implement systems that boost employee performance and engagement.</li>
+                    </p>
+                    <p>4. Digital Transformation:
+                        <li>Digital Strategy Development: We create strategies that leverage digital technologies to transform your business.</li>
+                    <li>Technology Implementation and Integration: Our team ensures seamless integration of new technologies into your operations.</li>
+                    <li>Data Analytics and Insights: We harness data to provide insights that inform strategic decisions.</li>
+                    </p>
+                    
+
+                </div>
+                <div class="mb-0 mt-3">
+                    <h5><b>Our Approach</b></h5>
+                    <p>
+                        <li>Collaborative and Customized:
+                            We take the time to understand your unique challenges and goals. Our team works closely with yours to develop tailored solutions that drive real results.</li>
+                    <li>Data-Driven and Insightful:
+                        We leverage data and analytics to inform our recommendations. Our team provides actionable insights that help you make informed decisions.</li>
+                    <li>Agile and Adaptable:
+                        We recognize that businesses are constantly evolving. Our team is agile and adaptable, ensuring that our solutions remain relevant and effective.
+                        
+                        </li>
+                    </p>
+
+                </div>
+                <div class="mb-0 mt-3">
+                    <h5><b>Why Choose Talennzia?</b></h5>
+                    <p>
+                        <li>Proven Track Record
+                            Our team has a proven track record of delivering results-driven solutions. We've helped numerous businesses achieve their goals and overcome challenges.</li>
+                    <li>Expertise and Experience
+                        Our consultants possess extensive expertise and experience across various industries. We leverage this knowledge to provide informed guidance and support.</li>
+                    <li>Personalized Service
+                        We prioritize building strong relationships with our clients. Our team provides personalized service, ensuring that you receive the attention and support you need.
+                        
+                        </li>
+                    </p>
+
+
+                </div>
+                
+            </div>
+
+        </div>
+
+    </section>
+    <div class="divider"></div>
+
+
+    <!-- footer-->
+    <footer>
+        <div class="footer-container">
+          <div class="logo-section">
+            <img src="./assets/img/logo.jpg" alt="GoAhead Logo">
+          </div>
+          <div class="address-section">
+            <p>Germany —</p>
+            <p>785 15th Street, Office 478</p>
+            <p>Berlin, De 81566</p>
+          </div>
+          <div class="contact-section">
+            <p>+1 840 841 25 69</p>
+            <p><a href="mailto:info@email.com">info@email.com</a></p>
+          </div>
+          <div class="subscribe-section">
+            <p>Get Fresh updates.</p>
+            <p>Just Subscribe</p>
+            <div class="social-icons">
+              <a href="#">F</a>
+              <a href="#">X</a>
+              <a href="#">D</a>
+              <a href="#">I</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          Talennzia © 2025. All rights reserved.
+        </div>
+      </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+    <script>
+        AOS.init();
+    </script>
+
+    <script>
+        // Toggle menu and overlay
+        const hamburger = document.querySelector('.hamburger');
+        const menu = document.querySelector('.menu');
+        const overlay = document.querySelector('.overlay');
+        const body = document.body;
+
+        hamburger.addEventListener('click', () => {
+            menu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            body.classList.toggle('no-scroll');
+        });
+
+        overlay.addEventListener('click', () => {
+            menu.classList.remove('active');
+            overlay.classList.remove('active');
+            hamburger.classList.remove('active');
+            body.classList.remove('no-scroll');
+        });
+    </script>
+</body>
+
+</html>
