@@ -3,7 +3,7 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     color: white;
-    background: url('../img/simon-lee-9QbuKUPFaNI-unsplash.jpg'); /* Replace with your image path */
+    background: url('../img/news_operational-excellence.png'); /* Replace with your image path */
     background-size: cover; /* Ensures the image covers the whole screen */
     height: 100vh; /* Full height */
     overflow: hidden; /* Prevent scrolling */
